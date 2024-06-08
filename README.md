@@ -49,6 +49,8 @@ Podríamos haber hecho esto con Python, por ejemplo, creando un bucle for. Pero 
 
 <b>Fig. 1</b> Primer set de datos obtenidos usando los comandos propios de Excel.
 
-Con los datos obtenidos, los cargamos en PowerBI y creamos un gráfico de barras donde el Eje horizontal ordene los resultados en 2 bloques distintos: el primer bloque, el exterior, ordena los resultados por el valor del atributo del personaje; el segundo, el interno, los ordena en acuerdo al nivel de la habilidad del personaje. De esta manera, podremos ver la evolución en acuerdo a ambas variables.
+Con los datos obtenidos, los cargamos en PowerBI y creamos un gráfico de barras donde el Eje horizontal ordene los resultados en 2 bloques distintos: el primer bloque, el exterior, ordena los resultados por el valor del atributo del personaje; el segundo, el interno, los ordena en acuerdo al nivel de la habilidad del personaje. De esta manera, podremos ver la evolución en acuerdo a ambas variables. El eje vertical nos muestra el resultado promedio de las tiradas, dibujando también las barras de error para poder ver la desviación estándar.
 
-El eje vertical nos muestra el resultado promedio de las tiradas, dibujando también las barras de error para poder ver la desviación estándar.
+* La desviación estándar (error a partir de ahora), dicho rápido y mal, es la diferencia que hay entre los valores máximo y mínimo de una muestra con respecto al promedio. No es exactamente asi, pero como definición para andar por casa nos sirve. La idea es que este valor sea lo más pequeño posible.
+
+En la figura 2 se muestra el gráfico con todos los resultados obtenidos, donde se puede apreciar que las barras muestran el comportamiento esperado inicialmente. No obstante, como este gráfico puede ser un poco engorroso de leer incluso para los ojos más acostumbrados, vamos a hacer uso de las opciones que nos da PowerBI y vamos a filtrar los resultados para que el gráfico nos muestre solo los resultados con un valor de nivel de habilidad concreto. 
