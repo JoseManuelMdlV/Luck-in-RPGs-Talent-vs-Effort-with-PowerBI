@@ -1,8 +1,5 @@
 # Luck in RPGs: Talent vs Effort with PowerBI
 
-## Contexto
-Nuestro cliente quiere hacer un videojuego del género RPG donde casi todas las acciones que se realizan dependan de cómo se construye el personaje. Sin embargo, como no quiere que la aleatoriedad juegue un papel demasiado importante (quiere que haya un elemento de fortuna, pero que este esté contenido), nos pide que descubramos qué tipo de tiradas debe hacer el motor del juego. Para ello nos explica cómo se construyen los personajes, habiendo una enorme libertad de personalización, y cómo insteractuaría con el mundo. Por último, nos ha pedido que los resultados se los presentemos haciendo uso de PowerBI, pues es una herramienta con la que está muy familiarizado y le resulta más sencillo leer los datos con esta.
-
 ## Objetivo
 Este pequeño proyecto tiene como finalidad el demostrar mi capacidad de usar herramientas de visualización tan potentes como PowerBI y cómo esta herramienta, en conjunto con mis habilidades analíticas dado mi trasfonodo como científico puede permitirme estudiar un problema donde las instrucciones son mínimas y, a partir de la deducción, obtener resultados aprovechables con los cuales el cliente esté satisfecho.
 
@@ -15,6 +12,10 @@ Este pequeño proyecto tiene como finalidad el demostrar mi capacidad de usar he
 6. Explicación de resultados a audiencias no técnicas
 
 ## Desarrollo del proyecto
+
+## Contexto
+Nuestro cliente quiere hacer un videojuego del género RPG donde casi todas las acciones que se realizan dependan de cómo se construye el personaje. Sin embargo, como no quiere que la aleatoriedad juegue un papel demasiado importante (quiere que haya un elemento de fortuna, pero que este esté contenido), nos pide que descubramos qué tipo de tiradas debe hacer el motor del juego. Para ello nos explica cómo se construyen los personajes, habiendo una enorme libertad de personalización, y cómo insteractuaría con el mundo. Por último, nos ha pedido que los resultados se los presentemos haciendo uso de PowerBI, pues es una herramienta con la que está muy familiarizado y le resulta más sencillo leer los datos con esta.
+
 ### Consideraciones previas.
 - El cliente solo nos ha dicho "quiero reducir el factor azar en las tiradas"
 - Se le ha preguntado al cliente cómo funciona la creación de personajes y cómo funcionan los dados para comprender mejor el funcionamiento del juego.
@@ -59,20 +60,34 @@ En la figura 2 se muestra el gráfico con todos los resultados obtenidos, donde 
 
 <b>Fig.2:</b> Visualización de todos los datos cargados de la hoja de Excel de la Fig.1
 
-Para la Figura 3, hemos escogido un nivel de habilidad 1 y hemos visto lo que ocurre tanto cuando tenemos tiradas de la forma Td1 (en color rojo), como de la forma 1dT (color azul). En este caso, ocurre justo lo que tiene que ocurrir, que es que las tiradas Td1 no tienen dispersión (en este caso siempre estamos sumando un valor único (1) un número T de veces) y las tiradas 1dT tienen un error asociado que se va haciendo mayor en tanto aumenta el número de caras del dado. El caso contrario, tiradas de la forma 1dH y Hd1, arrojan resultados similares a la inversa de los mostrados en la figura 3.
+Para la Figura 3, hemos escogido un nivel de habilidad 1 y hemos visto lo que ocurre tanto cuando tenemos tiradas de la forma Td1 (en color rojo), como de la forma 1dT (color azul). En este caso, ocurre justo lo que tiene que ocurrir, que es que las tiradas Td1 no tienen error (en este caso siempre estamos sumando un valor único (1) un número T de veces) y las tiradas 1dT tienen un error asociado que se va haciendo mayor en tanto aumenta el número de caras del dado. El caso contrario, tiradas de la forma 1dH y Hd1, arrojan resultados similares a la inversa de los mostrados en la figura 3.
 
 ![image](https://github.com/JoseManuelMdlV/Luck-in-RPGs-Talent-vs-Effort-with-PowerBI/assets/83475119/548c0f1f-0d32-402c-903d-c7f8bc7a97fa)
 
 <b>Fig.3:</b> Comparativa de las tiradas 1dT (azul) y Td1 (rojo)
 
-Hecha esta pequeña comprobación para ver que los datos son correctos y se comportan como deben, vamos viendo uno por uno los distintos resultados, viendo cuál es aquel que tiene una desviación menor. Para eso se confeccionan las tablas 1a (izquierda) y 1b (derecha), donde se recogen los promedios y desviaciones de los dos tipos de tiradas propuestos fijando un valor u otro. 
+Hecha esta pequeña comprobación para ver que los datos son correctos y se comportan como deben, vamos viendo uno por uno los distintos resultados, viendo cuál es aquel que tiene un error menor. Para eso se confeccionan las tablas 1a (izquierda) y 1b (derecha), donde se recogen los promedios y desviaciones de los dos tipos de tiradas propuestos fijando un valor u otro. 
 
 ![image](https://github.com/JoseManuelMdlV/Luck-in-RPGs-Talent-vs-Effort-with-PowerBI/assets/83475119/3c5fbadc-305f-45e4-80f6-cee8e2d676ae)
 
 <b>Tabla 1:</b> Valores y desviación estándar de las tiradas TdH y HdT con H fijo (izquierda) y T fijo (derecha)
 
-Mirando los resultados de las tablas, se puede inferir que la mejor solución será usar una serie detiradas TdH, donde el atributo del personaje defina el número de dados a utilizar y el nivel de habilidad el número de caras. La tabla 1a quizás no lleve de forma natural a esa conclusión dado que si nos fijamos solo en los valores de la desviación, la diferencia entre los pares de valores se van haciendo cada vez más pequeños. Si miramos la tabla 1b, el resultado se vuelve más obvio, pues a partir de un valor de atributo 5, los valores de TdH se hacen mayores que los de HdT, manteniendo unas dispersiones más controladas.
+Mirando los resultados de las tablas, se puede inferir que la mejor solución será usar una serie detiradas TdH, donde el atributo del personaje defina el número de dados a utilizar y el nivel de habilidad el número de caras. La tabla 1a quizás no lleve de forma natural a esa conclusión dado que si nos fijamos solo en los valores del error, la diferencia entre los pares de valores se van haciendo cada vez más pequeños. Si miramos la tabla 1b, el resultado se vuelve más obvio, pues a partir de un valor de atributo 5, los valores de TdH se hacen mayores que los de HdT, manteniendo unas dispersiones más controladas.
 
-Podríamos decir, por tanto, que lo mejor es usar el primer método propuesto, señalándole al cliente que, además de tener una menor dispersión, tendrá resultados consistentemente más altos que con el segundo método. 
+Podríamos decir, por tanto, que lo mejor es usar el primer método propuesto, señalándole al cliente que, además de tener una menor error, tendrá resultados consistentemente más altos que con el segundo método. 
 
-Esto es, sin embargo, el resultado de una prueba. Lo ideal sería repetir este mismo procedimiento otras dos veces para comprobar si se reproducen los resultados de forma consistente. 
+Esto es, sin embargo, el resultado de una prueba. Lo ideal sería repetir este mismo procedimiento otras dos veces para comprobar si se reproducen los resultados de forma consistente. Para ello, vamos a repetir las tiradas de dados haciendo otros dos sets, guardamos el promedio de cada set de tiradas y hacemos el promedio de los tres promedios y vemos su desviación estándar. Con ello, conseguiremos unos datos con un grado de prpecisión muy altos que nos permitirán, ahora sí, poder dar una respuesta mucho más certera (siempre y cuando las desviaciones no sean muy grandes. En cuyo caso habríamos de repetir con otros dos sets más)
+
+El resultado es lo que vemos en la figura 4, de nuevo una imagen panorámica de los resultados que se han obtenido, donde poco se puede inferir más que el hecho de que las barras de error ahora son notoriamente más pequeñas. Esto ayuda bastante incluso en la vista general a apreciar que el error para las tiradas TdH es menor que el de las tiradas HdT, lo cual refuerza lo que ya habíamos advertido anteriormente.  
+
+![image](https://github.com/JoseManuelMdlV/Luck-in-RPGs-Talent-vs-Effort-with-PowerBI/assets/83475119/f9de8d9b-b0a3-4568-9bfa-5cdd029f6e24)
+
+<b>Fig. 4:</b> Promedio de los sets de datos obtenidos
+
+Si repetimos la operación anterior con la que obtuvimos las tablas 1a y 1b, podemos obtener un par de tablas similares (Tabla 2a y 2b) donde podamos ver de manera inmediata cómo crecen los resultados de las tiradas y el error.
+
+![image](https://github.com/JoseManuelMdlV/Luck-in-RPGs-Talent-vs-Effort-with-PowerBI/assets/83475119/88396b15-b182-49c4-8a15-8ade4fd2d233)
+
+<b>Tabla 2:</b> Valores y desviación estándar de los promedios de las tiradas TdH y HdT con H fijo (izquierda) y T fijo (derecha)
+
+El análisis es similar al que se hizo para el primer par de tablas, con la tabla 2b mostrándonos mucho mejor la evolución tanto de los valores como de los errores, pudiendo concluir, ahora sí, que el mejor método para poder minimizar la influencia del azar es el primer método propuesto. 
