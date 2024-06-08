@@ -21,13 +21,13 @@ Este pequeño proyecto tiene como finalidad el demostrar mi capacidad de usar he
 - El cliente no posee conocimientos profundos en estadística, solo una base que le permite entender los gráficos
 
 ### Funcionamiento del sistema
-La creación de personajes está muy inspirada en juegos de rol de mesa como Dungeons&Dragons (D&D), pudiendo distribuir una serie de puntos entre distnitos atributos (Fuerza, Resistencia, Velocidad,... el cliente lo llama "Talento") y elegir una serie de habilidades con distintos niveles de mejora (Escalar, correr, atacar,... el cliente lo llama "Esfuerzo"). 
+La creación de personajes está muy inspirada en juegos de rol de mesa como Dungeons&Dragons (D&D), pudiendo distribuir una serie de puntos entre distnitos atributos (Fuerza, Resistencia, Velocidad,... el cliente lo llama "Talento") y elegir una serie de habilidades con distintos niveles de mejora (Escalar, correr, atacar,... el cliente lo llama "Habilidad"). 
 
 Las atributos podrán tener un vaor numérico que va del 1 al 10, mientras que las habilidades tendrán un valor comprendido entre 1 y 5.
 
 Inicialmente, el cliente había pensado en usar el mismo sistema que usa D&D, donde se tira un dado de 100 caras que va bonificado por distintos parámetros, pero en tanto que ello es muy dependiente de la suerte, quiere cambiarlo a otro método que le permita reducir esa dependencia. Para ello, se proponen 2 métodos distintos:
-1. Talento-Esfuerzo (TdE)
-2. Esfuerzo-Talento (EdT)
+1. Talento-Habilidad (TdH)
+2. Habilidad-Talento (HdT)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 <b>¿Cómo funcionan estas tiradas de dados?</b>
@@ -38,7 +38,7 @@ Hay otros juegos, como Cuthulhu Tech, que modifican el dado en acuerdo a los atr
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Para el primer caso, tendremos un énfasis en el número de tiradas que hacemos, pues T puede llegar a tener hasta 10 valores distintos, mientras que E solo llega a 5. En el segundo tendremos lo contrario, menos tiradas (hasta 5 dados), pero más caras por dado (hasta 10 caras). Cada uno de los métodos propuestos tiene una serie de peculiaridades, en las cuales no se entra para no volver muy compleja la explicación.
+Para el primer caso, tendremos un énfasis en el número de tiradas que hacemos, pues T puede llegar a tener hasta 10 valores distintos, mientras que H solo llega a 5. En el segundo tendremos lo contrario, menos tiradas (hasta 5 dados), pero más caras por dado (hasta 10 caras). Cada uno de los métodos propuestos tiene una serie de peculiaridades, en las cuales no se entra para no volver muy compleja la explicación.
 
 ### Obtención, carga y Visualización de datos
 Para obtener los datos necesarios, basta con tirar una serie de X dados con un número de Y caras las suficientes veces para tener una estadística buena. Para ello vamos a usar Excel, diciéndole que escoga un número aleatorio comprendido entre el menor y el mayor resultado posible de la tirada. Una vez haga un número suficiente de tiradas, le diremos que nos calcule el promedio y la desviación estándar. La figura 1 nos muestra la tabla de datos que hemos obtenido siguiendo este procedimiento. 
@@ -47,10 +47,32 @@ Podríamos haber hecho esto con Python, por ejemplo, creando un bucle for. Pero 
 
 ![image](https://github.com/JoseManuelMdlV/Luck-in-RPGs-Talent-vs-Effort-with-PowerBI/assets/83475119/3f7bfbd7-5155-4e00-abe6-04114ed2ce1a)
 
-<b>Fig. 1</b> Primer set de datos obtenidos usando los comandos propios de Excel.
+<b>Fig. 1:</b> Primer set de datos obtenidos usando los comandos propios de Excel.
 
 Con los datos obtenidos, los cargamos en PowerBI y creamos un gráfico de barras donde el Eje horizontal ordene los resultados en 2 bloques distintos: el primer bloque, el exterior, ordena los resultados por el valor del atributo del personaje; el segundo, el interno, los ordena en acuerdo al nivel de la habilidad del personaje. De esta manera, podremos ver la evolución en acuerdo a ambas variables. El eje vertical nos muestra el resultado promedio de las tiradas, dibujando también las barras de error para poder ver la desviación estándar.
 
 * La desviación estándar (error a partir de ahora), dicho rápido y mal, es la diferencia que hay entre los valores máximo y mínimo de una muestra con respecto al promedio. No es exactamente asi, pero como definición para andar por casa nos sirve. La idea es que este valor sea lo más pequeño posible.
 
 En la figura 2 se muestra el gráfico con todos los resultados obtenidos, donde se puede apreciar que las barras muestran el comportamiento esperado inicialmente. No obstante, como este gráfico puede ser un poco engorroso de leer incluso para los ojos más acostumbrados, vamos a hacer uso de las opciones que nos da PowerBI y vamos a filtrar los resultados para que el gráfico nos muestre solo los resultados con un valor de nivel de habilidad concreto. 
+
+![image](https://github.com/JoseManuelMdlV/Luck-in-RPGs-Talent-vs-Effort-with-PowerBI/assets/83475119/7ff7ea81-1646-45a2-a65a-ebe32f793f90)
+
+<b>Fig.2:</b> Visualización de todos los datos cargados de la hoja de Excel de la Fig.1
+
+Para la Figura 3, hemos escogido un nivel de habilidad 1 y hemos visto lo que ocurre tanto cuando tenemos tiradas de la forma Td1 (en color rojo), como de la forma 1dT (color azul). En este caso, ocurre justo lo que tiene que ocurrir, que es que las tiradas Td1 no tienen dispersión (en este caso siempre estamos sumando un valor único (1) un número T de veces) y las tiradas 1dT tienen un error asociado que se va haciendo mayor en tanto aumenta el número de caras del dado. El caso contrario, tiradas de la forma 1dH y Hd1, arrojan resultados similares a la inversa de los mostrados en la figura 3.
+
+![image](https://github.com/JoseManuelMdlV/Luck-in-RPGs-Talent-vs-Effort-with-PowerBI/assets/83475119/548c0f1f-0d32-402c-903d-c7f8bc7a97fa)
+
+<b>Fig.3:</b> Comparativa de las tiradas 1dT (azul) y Td1 (rojo)
+
+Hecha esta pequeña comprobación para ver que los datos son correctos y se comportan como deben, vamos viendo uno por uno los distintos resultados, viendo cuál es aquel que tiene una desviación menor. Para eso se confeccionan las tablas 1a (izquierda) y 1b (derecha), donde se recogen los promedios y desviaciones de los dos tipos de tiradas propuestos fijando un valor u otro. 
+
+![image](https://github.com/JoseManuelMdlV/Luck-in-RPGs-Talent-vs-Effort-with-PowerBI/assets/83475119/3c5fbadc-305f-45e4-80f6-cee8e2d676ae)
+
+<b>Tabla 1:</b> Valores y desviación estándar de las tiradas TdH y HdT con H fijo (izquierda) y T fijo (derecha)
+
+Mirando los resultados de las tablas, se puede inferir que la mejor solución será usar una serie detiradas TdH, donde el atributo del personaje defina el número de dados a utilizar y el nivel de habilidad el número de caras. La tabla 1a quizás no lleve de forma natural a esa conclusión dado que si nos fijamos solo en los valores de la desviación, la diferencia entre los pares de valores se van haciendo cada vez más pequeños. Si miramos la tabla 1b, el resultado se vuelve más obvio, pues a partir de un valor de atributo 5, los valores de TdH se hacen mayores que los de HdT, manteniendo unas dispersiones más controladas.
+
+Podríamos decir, por tanto, que lo mejor es usar el primer método propuesto, señalándole al cliente que, además de tener una menor dispersión, tendrá resultados consistentemente más altos que con el segundo método. 
+
+Esto es, sin embargo, el resultado de una prueba. Lo ideal sería repetir este mismo procedimiento otras dos veces para comprobar si se reproducen los resultados de forma consistente. 
