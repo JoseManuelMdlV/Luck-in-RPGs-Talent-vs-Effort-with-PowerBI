@@ -38,3 +38,17 @@ Hay otros juegos, como Cuthulhu Tech, que modifican el dado en acuerdo a los atr
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Para el primer caso, tendremos un énfasis en el número de tiradas que hacemos, pues T puede llegar a tener hasta 10 valores distintos, mientras que E solo llega a 5. En el segundo tendremos lo contrario, menos tiradas (hasta 5 dados), pero más caras por dado (hasta 10 caras). Cada uno de los métodos propuestos tiene una serie de peculiaridades, en las cuales no se entra para no volver muy compleja la explicación.
+
+### Obtención, carga y Visualización de datos
+Para obtener los datos necesarios, basta con tirar una serie de X dados con un número de Y caras las suficientes veces para tener una estadística buena. Para ello vamos a usar Excel, diciéndole que escoga un número aleatorio comprendido entre el menor y el mayor resultado posible de la tirada. Una vez haga un número suficiente de tiradas, le diremos que nos calcule el promedio y la desviación estándar. La figura 1 nos muestra la tabla de datos que hemos obtenido siguiendo este procedimiento. 
+
+Podríamos haber hecho esto con Python, por ejemplo, creando un bucle for. Pero por simplificar el proyecto, se ha optado por usar Excel.
+
+![image](https://github.com/JoseManuelMdlV/Luck-in-RPGs-Talent-vs-Effort-with-PowerBI/assets/83475119/3f7bfbd7-5155-4e00-abe6-04114ed2ce1a)
+
+<b>Fig. 1</b> Primer set de datos obtenidos usando los comandos propios de Excel.
+
+Con los datos obtenidos, los cargamos en PowerBI y creamos un gráfico de barras donde el Eje horizontal ordene los resultados en 2 bloques distintos: el primer bloque, el exterior, ordena los resultados por el valor del atributo del personaje; el segundo, el interno, los ordena en acuerdo al nivel de la habilidad del personaje. De esta manera, podremos ver la evolución en acuerdo a ambas variables.
+
+El eje vertical nos muestra el resultado promedio de las tiradas, dibujando también las barras de error para poder ver la desviación estándar.
